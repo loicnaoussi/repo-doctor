@@ -1,0 +1,33 @@
+{
+    "name": "repo-doctor",
+    "version": "0.1.0",
+    "description": "A checkup for public repositories: what a new contributor would hit first.",
+    "type": "module",
+    "license": "MIT",
+    "bin": {
+        "repo-doctor": "./dist/cli.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "scripts": {
+        "build": "tsc",
+        "test": "tsc --noEmit && vitest run",
+        "dev": "tsx src/cli.ts",
+        "lint": "eslint .",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\""
+    },
+    "devDependencies": {
+        "@types/node": "^24.0.0",
+        "eslint": "^9.0.0",
+        "prettier": "^3.3.0",
+        "tsx": "^4.19.0",
+        "typescript": "^5.6.0",
+        "typescript-eslint": "^8.0.0",
+        "vitest": "^3.0.0"
+    },
+    "engines": {
+        "node": ">=20"
+    }
+}
