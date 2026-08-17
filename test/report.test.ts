@@ -3,7 +3,9 @@ import { formatReport } from "../src/report.js";
 
 describe("formatReport", () => {
     it("marks a pass with a check and reports a clean summary", () => {
-        const output = formatReport([{ id: "has-license", status: "pass", message: "Found LICENSE." }]);
+        const output = formatReport([
+            { id: "has-license", status: "pass", message: "Found LICENSE." },
+        ]);
         expect(output).toContain("✓ has-license: Found LICENSE.");
         expect(output).toContain("1/1 checks passed.");
     });
