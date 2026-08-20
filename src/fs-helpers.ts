@@ -15,3 +15,11 @@ export function findEntry(root: string, names: readonly string[]): string | unde
     const match = entries.find((entry) => entry.isFile() && wanted.has(entry.name.toLowerCase()));
     return match ? join(root, match.name) : undefined;
 }
+
+/** Below this length, a file's content can't realistically say anything a contributor could act on. */
+export const MIN_MEANINGFUL_LENGTH = 40;
+
+/** Whether already-trimmed `content` clears the minimum length a check treats as saying something real, rather than being an empty stub. */
+export function isMeaningfulContent(content: string): boolean {
+    return content.length >= MIN_MEANINGFUL_LENGTH;
+}

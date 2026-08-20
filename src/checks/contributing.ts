@@ -1,11 +1,8 @@
 import { readFileSync } from "node:fs";
-import { findEntry } from "../fs-helpers.js";
+import { findEntry, isMeaningfulContent } from "../fs-helpers.js";
 import type { Check } from "./types.js";
 
 const CONTRIBUTING_NAMES = ["CONTRIBUTING.md", "CONTRIBUTING", "CONTRIBUTING.txt"];
-
-/** Below this length, a CONTRIBUTING file can't tell a contributor how to actually contribute. */
-const MIN_MEANINGFUL_LENGTH = 40;
 
 /** Without this file, a would-be contributor has to guess at process, tests, and review — or just leaves. */
 export const hasContributing: Check = {
@@ -24,7 +21,7 @@ export const hasContributing: Check = {
             };
         }
         const contents = readFileSync(found, "utf8").trim();
-        if (contents.length < MIN_MEANINGFUL_LENGTH) {
+        if (!isMeaningfulContent(contents)) {
             return {
                 id: this.id,
                 status: "fail",

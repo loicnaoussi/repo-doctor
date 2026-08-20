@@ -1,11 +1,8 @@
 import { readFileSync } from "node:fs";
-import { findEntry } from "../fs-helpers.js";
+import { findEntry, isMeaningfulContent } from "../fs-helpers.js";
 import type { Check } from "./types.js";
 
 const README_NAMES = ["README.md", "README", "README.txt", "README.rst"];
-
-/** A minimum length below which a README says nothing a contributor could act on. */
-const MIN_MEANINGFUL_LENGTH = 40;
 
 /** An empty or near-empty README is worse than none: it looks answered but isn't. */
 export const hasReadme: Check = {
@@ -17,7 +14,7 @@ export const hasReadme: Check = {
             return { id: this.id, status: "fail", message: "No README file found." };
         }
         const contents = readFileSync(found, "utf8").trim();
-        if (contents.length < MIN_MEANINGFUL_LENGTH) {
+        if (!isMeaningfulContent(contents)) {
             return {
                 id: this.id,
                 status: "fail",
