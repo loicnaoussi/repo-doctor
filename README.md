@@ -30,9 +30,9 @@ pnpm build
 node dist/cli.js /path/to/some/repo
 ```
 
-Checks so far: a LICENSE file, a README with real content, and a
-CONTRIBUTING guide. (The CLI is still growing — see the commit history for
-what's checked so far.)
+Checks so far: a LICENSE file, a README with real content, a CONTRIBUTING
+guide, and a CI workflow that does more than sit there. (The CLI is still
+growing — see the commit history for what's checked so far.)
 
 ## License
 
